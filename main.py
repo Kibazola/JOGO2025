@@ -40,6 +40,7 @@ tela_carregamento(window, WIDTH, HEIGHT)
 music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Background Music by Alec Koff.mp3')
 music.set_volume(0.5)  # ajusta o volume
 music.play(loops=-1)
+music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
 
 
 
@@ -94,9 +95,9 @@ while game:
     all_sprites.update()
 
     # Verifica se houve colisão entre o jogador  e morcego
-    hits = pygame.sprite.spritecollide(player, all_morcegos       , True)
+    hits = pygame.sprite.spritecollide(player, all_morcegos, False)
     if hits:
-        game =False
+        music_dor.play()
     
 
     

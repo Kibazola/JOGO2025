@@ -24,7 +24,7 @@ class Morcego(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = img_morcego
         self.rect = self.image.get_rect()
-        self.rect.center = (0, 350)
+        self.rect.center = (0, 450)
         self.image_index = 0
         self.speedx = random.randint(0, 7)
         self.WIDTH = WIDTH
