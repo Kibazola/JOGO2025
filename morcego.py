@@ -20,9 +20,9 @@ music_morcego.set_volume(0.05)
 # Esta classe foi baseada no seguinte tutorial: 
 # https://www.youtube.com/watch?v=RERGFvpRWVA
 class Morcego(pygame.sprite.Sprite):
-    def __init__(self, WIDTH):
+    def __init__(self,img_morcego, WIDTH):
         pygame.sprite.Sprite.__init__(self)
-        self.image = img_morcego[0]
+        self.image = img_morcego
         self.rect = self.image.get_rect()
         self.rect.center = (0, 250)
         self.image_index = 0

@@ -13,13 +13,26 @@ HEIGHT = 870
 p_WIDTH = 100
 p_HEIGHT = 200
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Jogo do Kiba!')
+pygame.display.set_caption('Jogo')
 
 # Criando as imagens
 background = pygame.image.load('assets/img/fundo novo.jpg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 img_personagem = pygame.image.load('assets/img/personagem_normal-removebg-preview (1).png').convert_alpha()
 img_personagem = pygame.transform.scale(img_personagem, (p_WIDTH, p_HEIGHT))
+
+p_WIDTH = 100
+p_HEIGHT = 100
+
+img_morcego = [
+    pygame.transform.scale(pygame.image.load('assets/img/voando/0-removebg-preview.png'), (p_WIDTH, p_HEIGHT)),
+    pygame.transform.scale(pygame.image.load('assets/img/voando/1-removebg-preview.png'), (p_WIDTH, p_HEIGHT)),
+    pygame.transform.scale(pygame.image.load('assets/img/voando/2-removebg-preview.png'), (p_WIDTH, p_HEIGHT)),
+    pygame.transform.scale(pygame.image.load('assets/img/voando/4-removebg-preview.png'), (p_WIDTH, p_HEIGHT)),
+    pygame.transform.scale(pygame.image.load('assets/img/voando/5-removebg-preview.png'), (p_WIDTH, p_HEIGHT))
+]
+
+
 
 # Chama a função tela de carregamento:
 tela_carregamento(window, WIDTH, HEIGHT)
@@ -39,19 +52,19 @@ FPS = 30
 
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
+all_morcegos = pygame.sprite.Group()
 
 # Criando o jogador
 player = Pessoa(img_personagem, WIDTH, HEIGHT)
 all_sprites.add(player)
 
+#Criando os morcegos:
+for i in range(3):
+    morcego = Morcego(img_morcego[i], WIDTH)
+    all_sprites.add(morcego)
+    all_morcegos.add(morcego)
 
 
-morcego1 = pygame.sprite.GroupSingle()
-morcego2 = pygame.sprite.GroupSingle()
-morcego3 = pygame.sprite.GroupSingle()
-morcego1.add(Morcego(WIDTH))
-morcego2.add(Morcego(WIDTH))
-morcego3.add(Morcego(WIDTH))
 
 
 while game:
@@ -73,20 +86,21 @@ while game:
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
                 player.speedx = 0
 
+
+
+    # ----- Atualiza estado do jogo
+    # Atualizando a posição dos morcegos
+
     all_sprites.update()
-    morcego1.update()
-    morcego2.update()
-    morcego3.update()
-
-    window.blit(background, (0, 0))
-    all_sprites.draw(window)
-    morcego1.draw(window)
-    morcego2.draw(window)
-    morcego3.draw(window)
     
-     
+
+    
 
 
+    #---- Gera saídas
+    window.blit(background, (0, 0))
+    # Desenhando os morcegos
+    all_sprites.draw(window)
 
     pygame.display.update()
 
