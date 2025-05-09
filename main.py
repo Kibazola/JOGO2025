@@ -92,6 +92,11 @@ while game:
     # Atualizando a posição dos morcegos
 
     all_sprites.update()
+
+    # Verifica se houve colisão entre o jogador  e morcego
+    hits = pygame.sprite.spritecollide(player, all_morcegos       , True)
+    if hits:
+        game =False
     
 
     
