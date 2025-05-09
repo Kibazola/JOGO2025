@@ -21,7 +21,7 @@ item_boxes = {
 
 
 class ItemBox(pygame.sprite.Sprite):
-    def _init_(self, item_type,x,y):
+    def __init__(self, item_type,x,y):
         pygame.sprite.Sprite._init_(self)
         self.item_type = item_type
         self.image = item_boxes[self.item_type]
