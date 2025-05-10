@@ -8,6 +8,8 @@ class Pessoa(pygame.sprite.Sprite):
         self.original_image = img_personagem
         self.image = img_personagem
         self.rect = self.image.get_rect()
+        
+        self.rect = self.rect.inflate(-60, -20)
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 10
         self.speedx = 0

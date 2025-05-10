@@ -3,6 +3,7 @@ from tela_de_carregamento import tela_carregamento
 from pessoa import Pessoa
 from morcego import Morcego
 import random
+from items import ItemBox
 
 
 pygame.init()
@@ -53,7 +54,7 @@ FPS = 30
 
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
-all_morcegos = pygame.sprite.Group()
+all_morcegos_e_espinhos = pygame.sprite.Group()
 
 # Criando o jogador
 player = Pessoa(img_personagem, WIDTH, HEIGHT)
@@ -63,7 +64,16 @@ all_sprites.add(player)
 for i in range(3):
     morcego = Morcego(img_morcego[i], WIDTH)
     all_sprites.add(morcego)
-    all_morcegos.add(morcego)
+    all_morcegos_e_espinhos.add(morcego)
+
+#Criando o items espinhos:
+# Este código foi gerado por AI
+for i in range(2):  # quantidade de espinhos
+    x = random.randint(200, WIDTH - 200)
+    y = random.randint(300, 800)
+    espinho = ItemBox("espinho", x, 800)
+    all_sprites.add(espinho)
+    all_morcegos_e_espinhos.add(espinho)
 
 
 
@@ -95,7 +105,7 @@ while game:
     all_sprites.update()
 
     # Verifica se houve colisão entre o jogador  e morcego
-    hits = pygame.sprite.spritecollide(player, all_morcegos, False)
+    hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
     if hits:
         music_dor.play()
     
