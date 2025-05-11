@@ -88,9 +88,9 @@ for i in range(2):  # quantidade de espinhos
     all_moedas.add(moeda)
 
 
-    pontos = 0
-    lives = 3
-
+pontos = 0
+lives = 3
+colidindo = False
 
 
 
@@ -112,9 +112,10 @@ while game:
                 player.isJump = True
 
         if event.type == pygame.KEYUP:
-            if event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
-                player.speedx = 0
-
+            if event.key == pygame.K_LEFT:
+                        player.speedx += 8
+            if event.key == pygame.K_RIGHT:
+                player.speedx -= 8
 
 
     # ----- Atualiza estado do jogo
@@ -123,10 +124,17 @@ while game:
     all_sprites.update()
 
 
-    # Verifica se houve colisão entre o jogador  e morcego
+    # Verifica se houve colisão entre o jogador e morcego ou espinho
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
     if hits:
-        music_dor.play()
+        if hits and not colidindo:
+
+            music_dor.play()
+            lives -=1
+            colidindo = True
+    else:
+        colidindo = False
+        
 
     #Verifica se houve colisão entre o jogador  e moeda
     hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
