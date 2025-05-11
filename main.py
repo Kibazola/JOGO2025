@@ -130,7 +130,11 @@ while game:
     # Verifica se houve colisão entre o jogador e morcego ou espinho
 
     if lives ==0:
+        sleep(1)
+        window.fill((0,0,0))
+        window.blit(game_over_img, (10,10))
         gm_music.play()
+        pygame.display.update()
         sleep(5)
         game = False
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
