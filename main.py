@@ -73,6 +73,9 @@ for i in range(2):  # quantidade de espinhos
     x = random.randint(200, WIDTH - 200)
     x_m = random.randint(200, WIDTH - 200)
     y = random.randint(300, 800)
+    # Evita que a moeda fique muito perto do espinho
+    while abs(x - x_m) < 100:
+        x_m = random.randint(200, WIDTH - 200)
     espinho = ItemBox("espinho", x, 800)
     moeda = ItemBox("moeda", x_m, 800)
     all_sprites.add(espinho)
@@ -114,6 +117,11 @@ while game:
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
     if hits:
         music_dor.play()
+
+    #Verifica se houve colisão entre o jogador  e moeda
+    hits_m = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, True)
+    if hits_m:
+        p
     
 
     
