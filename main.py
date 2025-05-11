@@ -55,6 +55,7 @@ FPS = 30
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
 all_morcegos_e_espinhos = pygame.sprite.Group()
+all_moedas = pygame.sprite.Group()
 
 # Criando o jogador
 player = Pessoa(img_personagem, WIDTH, HEIGHT)
@@ -70,10 +71,15 @@ for i in range(3):
 # Este código foi gerado por AI
 for i in range(2):  # quantidade de espinhos
     x = random.randint(200, WIDTH - 200)
+    x_m = random.randint(200, WIDTH - 200)
     y = random.randint(300, 800)
     espinho = ItemBox("espinho", x, 800)
+    moeda = ItemBox("moeda", x_m, 800)
     all_sprites.add(espinho)
+    all_sprites.add(moeda)
     all_morcegos_e_espinhos.add(espinho)
+    all_moedas.add(moeda)
+
 
 
 
