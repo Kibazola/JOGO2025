@@ -119,9 +119,14 @@ while game:
         music_dor.play()
 
     #Verifica se houve colisão entre o jogador  e moeda
-    hits_m = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, True)
+    hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
     if hits_m:
-        p
+        for moeda in hits_m:
+
+        # reposiciona a moeda em nova posição no chão
+            nova_x = random.randint(200, WIDTH - 200)
+            moeda.rect.x = nova_x
+        
     
 
     
