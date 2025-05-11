@@ -42,6 +42,7 @@ music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Backgroun
 music.set_volume(0.5)  # ajusta o volume
 music.play(loops=-1)
 music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
+font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
 
 
 
@@ -56,6 +57,7 @@ FPS = 30
 all_sprites = pygame.sprite.Group()
 all_morcegos_e_espinhos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
+all_vida  = pygame.sprite.Group()
 
 # Criando o jogador
 player = Pessoa(img_personagem, WIDTH, HEIGHT)
@@ -72,19 +74,24 @@ for i in range(3):
 for i in range(2):  # quantidade de espinhos
     x = random.randint(200, WIDTH - 200)
     x_m = random.randint(200, WIDTH - 200)
+    x_vida = random.randint(200, WIDTH - 200)
     y = random.randint(300, 800)
     # Evita que a moeda fique muito perto do espinho
     while abs(x - x_m) < 100:
         x_m = random.randint(200, WIDTH - 200)
     espinho = ItemBox("espinho", x, 800)
     moeda = ItemBox("moeda", x_m, 800)
+    vida = ItemBox("vida", x_vida, 800)
+
     all_sprites.add(espinho)
     all_sprites.add(moeda)
+    all_sprites.add(vida)
     all_morcegos_e_espinhos.add(espinho)
     all_moedas.add(moeda)
+    all_vida.add(vida)
 
-
-
+pontos = 0
+lives = 3
 
 
 while game:
@@ -113,6 +120,7 @@ while game:
 
     all_sprites.update()
 
+
     # Verifica se houve colisão entre o jogador  e morcego
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
     if hits:
@@ -122,10 +130,25 @@ while game:
     hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
     if hits_m:
         for moeda in hits_m:
+            #Ganhou pontos
+            pontos +=50
+            if pontos  % 1000 ==0:
+                lives+=1
+
 
         # reposiciona a moeda em nova posição no chão
             nova_x = random.randint(200, WIDTH - 200)
             moeda.rect.x = nova_x
+
+    #Verifica se houve colisão entre o jogador  e o corção
+    hits_v = pygame.sprite.spritecollide(player,all_vida, False)
+    if hits_v:
+        for vida in hits_v:
+
+
+        # reposiciona a vida em nova posição no chão
+            nova_v = random.randint(200, WIDTH - 200)
+            vida.rect.x = nova_v
         
     
 
@@ -136,6 +159,18 @@ while game:
     window.blit(background, (0, 0))
     # Desenhando os morcegos
     all_sprites.draw(window)
+
+    # Desenhando o score
+    text_surface = font_pontuação.render("{:08d}".format(pontos), True, (255, 255, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (WIDTH / 2,  10)
+    window.blit(text_surface, text_rect)
+
+    # Desenhando as vidas
+    text_surface = font_pontuação.render(chr(9829) * lives, True, (255, 0, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.bottomleft = (10, HEIGHT - 10)
+    window.blit(text_surface, text_rect)
 
     pygame.display.update()
 
