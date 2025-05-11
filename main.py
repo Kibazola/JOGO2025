@@ -18,6 +18,8 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Jogo')
 
 # Criando as imagens
+game_over_img = pygame.image.load('assets/img/game_over1.webp').convert()
+game_over_img = pygame.transform.scale(game_over_img, (WIDTH, HEIGHT))
 background = pygame.image.load('assets/img/fundo novo.jpg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 img_personagem = pygame.image.load('assets/img/personagem_normal-removebg-preview (1).png').convert_alpha()
@@ -44,7 +46,7 @@ music.set_volume(0.5)  # ajusta o volume
 music.play(loops=-1)
 music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
 font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
-
+gm_music = pygame.mixer.Sound('assets/snd/GAME OVER efeito sonoro!!.mp3')
 
 
 # Loop principal do jogo
@@ -128,8 +130,8 @@ while game:
     # Verifica se houve colisão entre o jogador e morcego ou espinho
 
     if lives ==0:
-        music_dor.play()
-        sleep(2)
+        gm_music.play()
+        sleep(5)
         game = False
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
 
