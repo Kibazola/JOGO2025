@@ -4,6 +4,7 @@ from pessoa import Pessoa
 from morcego import Morcego
 import random
 from items import ItemBox
+from time import sleep
 
 
 pygame.init()
@@ -125,7 +126,13 @@ while game:
 
 
     # Verifica se houve colisão entre o jogador e morcego ou espinho
+
+    if lives ==0:
+        music_dor.play()
+        sleep(2)
+        game = False
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
+
     if hits:
         if hits and not colidindo:
 
