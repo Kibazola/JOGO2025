@@ -90,11 +90,15 @@ for i in range(2):  # quantidade de espinhos
     all_moedas.add(moeda)
     all_vida.add(vida)
 
+    pontos = 0
+    lives = 3
+
 
 
 
 
 while game:
+
     clock.tick(FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
@@ -129,6 +133,9 @@ while game:
     #Verifica se houve colisão entre o jogador  e moeda
     hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
     if hits_m:
+        pontos+=25
+        if pontos % 1000 ==0:
+            lives+=1
         for moeda in hits_m:
 
         # reposiciona a moeda em nova posição no chão
@@ -154,6 +161,18 @@ while game:
     window.blit(background, (0, 0))
     # Desenhando os morcegos
     all_sprites.draw(window)
+
+    # Desenhando o score
+    text_surface = font_pontuação.render("{:08d}".format(pontos), True, (255, 255, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (WIDTH / 2,  10)
+    window.blit(text_surface, text_rect)
+
+    # Desenhando as vidas
+    text_surface = font_pontuação.render(chr(9829) * lives, True, (255, 0, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.bottomleft = (10, HEIGHT - 10)
+    window.blit(text_surface, text_rect)
 
     pygame.display.update()
 
