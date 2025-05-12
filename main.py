@@ -47,6 +47,7 @@ music.play(loops=-1)
 music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
 font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
 gm_music = pygame.mixer.Sound('assets/snd/GAME OVER efeito sonoro!!.mp3')
+moeda_musc = pygame.mixer.Sound('assets/snd/MOEDA DO SUPER MÁRIO.mp3')
 
 
 # Loop principal do jogo
@@ -108,7 +109,7 @@ while game:
         # https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/jumping
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player.speedx = -8
+                player.speedx = -8 
             if event.key == pygame.K_RIGHT:
                 player.speedx = 8
             if event.key == pygame.K_SPACE and not player.isJump:
@@ -133,6 +134,7 @@ while game:
         sleep(1)
         window.fill((0,0,0))
         window.blit(game_over_img, (10,10))
+        music.fadeout(2000)
         gm_music.play()
         pygame.display.update()
         sleep(5)
@@ -152,7 +154,8 @@ while game:
     #Verifica se houve colisão entre o jogador  e moeda
     hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
     if hits_m:
-        pontos+=25
+        pontos+=500
+        moeda_musc.play()
         if pontos % 1000 ==0:
             lives+=1
         for moeda in hits_m:
