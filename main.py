@@ -120,7 +120,7 @@ world_data = [
 world = World(world_data)
 
 
-
+cont_m = False
 while game:
 
     clock.tick(FPS)
@@ -131,14 +131,58 @@ while game:
 
         # Os códigos para pular foram baseados no tutorial:
         # https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/jumping
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player.speedx = -8 
-            if event.key == pygame.K_RIGHT:
-                player.speedx = 8
-            if event.key == pygame.K_SPACE and not player.isJump:
-                player.isJump = True
+        if lives > 0:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    player.speedx = -8 
+                if event.key == pygame.K_RIGHT:
+                    player.speedx = 8
+                if event.key == pygame.K_SPACE and not player.isJump:
+                    player.isJump = True
+        else:
+            if event.key == pygame.K_SPACE:
+                    # Reinicia o jogo
+                    lives = 3
+                    pontos = 0
+                    colidindo = False
 
+                    # Remove todos os obstáculos
+                    for obstaculo in all_morcegos_e_espinhos:
+                        if obstaculo != player:  # Não remove o jogador
+                            obstaculo.kill()
+                    for moeda in all_moedas:
+                        if moeda != player:
+                            moeda.kill()
+                            #Criando os morcegos:
+                    for i in range(3):
+                        morcego = Morcego(img_morcego[i], WIDTH)
+                        all_sprites.add(morcego)
+                        all_morcegos_e_espinhos.add(morcego)
+
+                    #Criando o items espinhos:
+                    # Este código foi gerado por AI
+
+                    for i in range(2):  # quantidade de espinhos
+                        x = random.randint(200, WIDTH - 200)
+                        x_m = random.randint(200, WIDTH - 200)
+                        y = random.randint(300, 800)
+                        # Evita que a moeda fique muito perto do espinho
+                        while abs(x - x_m) < 100:
+                            x_m = random.randint(200, WIDTH - 200)
+                        espinho = ItemBox("espinho", x, 750)
+                        moeda = ItemBox("moeda", x_m, 750)
+                    
+
+                        all_sprites.add(espinho)
+                        all_sprites.add(moeda)
+                        all_morcegos_e_espinhos.add(espinho)
+                        all_moedas.add(moeda)
+                    
+                    # Reposiciona o jogador
+                    player.rect.x = 50
+                    player.rect.y = HEIGHT - 200
+                    player.isJump = False
+                    player.speedx = 0
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                         player.speedx += 8
@@ -149,20 +193,21 @@ while game:
     # ----- Atualiza estado do jogo
     # Atualizando a posição dos morcegos
 
-    all_sprites.update()
-
-
+    if lives > 0:
+        all_sprites.update()
+    else:
+        # Mostra tela de game over
+       # window.blit(background, (0, 0))
+        window.blit(game_over_img, (10, 10))
+        sleep(3)
+        if not cont_m:
+            cont_m = True
+            gm_music.play()
+        pygame.display.update()
+        continue  # Pula o resto do loop se o jogo acabou
     # Verifica se houve colisão entre o jogador e morcego ou espinho
 
-    if lives ==0:
-        sleep(1)
-        window.fill((0,0,0))
-        window.blit(game_over_img, (10,10))
-        music.fadeout(2000)
-        gm_music.play()
-        pygame.display.update()
-        sleep(5)
-        game = False
+    
     hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
 
     if hits:
@@ -171,6 +216,7 @@ while game:
             music_dor.play()
             lives -=1
             colidindo = True
+            cont_m = False
     else:
         colidindo = False
         
