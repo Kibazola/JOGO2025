@@ -26,7 +26,6 @@ background = pygame.image.load('assets/img/fundo novo.jpg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 img_personagem = pygame.image.load('assets/img/personagem_normal-removebg-preview (1).png').convert_alpha()
 img_personagem = pygame.transform.scale(img_personagem, (p_WIDTH, p_HEIGHT))
-
 p_WIDTH = 100
 p_HEIGHT = 100
 
@@ -114,7 +113,7 @@ world_data = [
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,2,2,2,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3],
 ]
 
 # Criação do mundo
@@ -208,7 +207,7 @@ while game:
     # Desenhando as vidas
     text_surface = font_pontuação.render(chr(9829) * lives, True, (255, 0, 0))
     text_rect = text_surface.get_rect()
-    text_rect.bottomleft = (10, HEIGHT - 10)
+    text_rect.bottomleft = (30, HEIGHT - 30)
     window.blit(text_surface, text_rect)
 
     pygame.display.update()

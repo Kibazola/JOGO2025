@@ -23,6 +23,8 @@ class World():
         # load images
         dirt_img = pygame.image.load('assets/img/dirt.png')
         grass_img = pygame.image.load('assets/img/grass.png')
+        img_spike = pygame.image.load('assets/img/Short_Spike_Row.webp')
+
 
         row_count = 0
         for row in data:
@@ -38,6 +40,14 @@ class World():
 
                 if tile == 2:
                     img = pygame.transform.scale(grass_img, (tile_size, tile_size))
+                    img_rect = img.get_rect()
+                    img_rect.x = col_count * tile_size
+                    img_rect.y = row_count * tile_size
+                    tile = (img, img_rect)
+                    self.tile_list.append(tile)
+                
+                if tile == 3:
+                    img = pygame.transform.scale(img_spike, (tile_size, tile_size))
                     img_rect = img.get_rect()
                     img_rect.x = col_count * tile_size
                     img_rect.y = row_count * tile_size
