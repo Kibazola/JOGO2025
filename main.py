@@ -88,8 +88,8 @@ for i in range(2):  # quantidade de espinhos
     # Evita que a moeda fique muito perto do espinho
     while abs(x - x_m) < 100:
         x_m = random.randint(200, WIDTH - 200)
-    espinho = ItemBox("espinho", x, 800)
-    moeda = ItemBox("moeda", x_m, 800)
+    espinho = ItemBox("espinho", x, 750)
+    moeda = ItemBox("moeda", x_m, 750)
    
 
     all_sprites.add(espinho)
@@ -202,7 +202,7 @@ while game:
     # Desenhando o score
     text_surface = font_pontuação.render("{:08d}".format(pontos), True, (255, 255, 0))
     text_rect = text_surface.get_rect()
-    text_rect.midtop = (WIDTH / 2,  10)
+    text_rect.midtop = (WIDTH / 2,  15)
     window.blit(text_surface, text_rect)
 
     # Desenhando as vidas
