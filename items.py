@@ -29,3 +29,15 @@ class ItemBox(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect = self.rect.inflate(-60, -60)
         self.rect.midtop = (x + TILE_SIZE//2, y + (TILE_SIZE - self.image.get_height()))
+
+
+
+
+
+class Plataforma(pygame.sprite.Sprite):
+    def __init__(self, x, y, largura=300, altura=50, cor=(139, 69, 19)):  # marrom padrão
+        super().__init__()
+        self.image = pygame.Surface((largura, altura))
+        self.image.fill(cor)
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)

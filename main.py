@@ -10,6 +10,7 @@ from time import sleep
 pygame.init()
 pygame.mixer.init()
 
+
 WIDTH = 1600
 HEIGHT = 870
 p_WIDTH = 100
@@ -38,6 +39,7 @@ img_morcego = [
 
 
 
+
 # Chama a função tela de carregamento:
 tela_carregamento(window, WIDTH, HEIGHT)
 
@@ -63,6 +65,8 @@ all_morcegos_e_espinhos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
 
 
+
+
 # Criando o jogador
 player = Pessoa(img_personagem, WIDTH, HEIGHT)
 all_sprites.add(player)
@@ -75,6 +79,7 @@ for i in range(3):
 
 #Criando o items espinhos:
 # Este código foi gerado por AI
+
 for i in range(2):  # quantidade de espinhos
     x = random.randint(200, WIDTH - 200)
     x_m = random.randint(200, WIDTH - 200)
@@ -92,19 +97,21 @@ for i in range(2):  # quantidade de espinhos
     all_moedas.add(moeda)
 
 
+
 pontos = 0
 lives = 3
 colidindo = False
 
 
 
-
 while game:
 
     clock.tick(FPS)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
             game = False
+
         # Os códigos para pular foram baseados no tutorial:
         # https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/jumping
         if event.type == pygame.KEYDOWN:
@@ -154,7 +161,7 @@ while game:
     #Verifica se houve colisão entre o jogador  e moeda
     hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
     if hits_m:
-        pontos+=500
+        pontos+=25
         moeda_musc.play()
         if pontos % 1000 ==0:
             lives+=1
