@@ -10,9 +10,9 @@ TILE_SIZE = 64
 img_vida =  pygame.image.load('assets/img/items/vida-removebg-preview.png').convert_alpha()
 img_vida= pygame.transform.scale(img_vida, (100, 100))
 img_espinho = pygame.image.load('assets/img/items/espinho-removebg-preview.png').convert_alpha()
-img_espinho= pygame.transform.scale(img_espinho, (150,200 ))
+img_espinho= pygame.transform.scale(img_espinho, (100,150 ))
 img_moeda = pygame.image.load('assets/img/items/moeda-removebg-preview.png').convert_alpha()
-img_moeda= pygame.transform.scale(img_moeda, (100, 100))
+img_moeda= pygame.transform.scale(img_moeda, (70, 70))
 
 item_boxes = {
     "vida"    : img_vida,
@@ -34,10 +34,3 @@ class ItemBox(pygame.sprite.Sprite):
 
 
 
-class Plataforma(pygame.sprite.Sprite):
-    def __init__(self, x, y, largura=300, altura=50, cor=(139, 69, 19)):  # marrom padrão
-        super().__init__()
-        self.image = pygame.Surface((largura, altura))
-        self.image.fill(cor)
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)

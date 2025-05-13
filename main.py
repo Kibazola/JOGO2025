@@ -14,8 +14,8 @@ pygame.mixer.init()
 
 WIDTH = 1600
 HEIGHT = 900
-p_WIDTH = 100
-p_HEIGHT = 200
+p_WIDTH = 75
+p_HEIGHT = 130
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Jogo')
 
