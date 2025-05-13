@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 WIDTH = 1600
-HEIGHT = 870
+HEIGHT = 900
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # esta classe foi baseado no seguinte tutorial:

@@ -5,6 +5,7 @@ from morcego import Morcego
 import random
 from items import ItemBox
 from time import sleep
+from plataforma import World
 
 
 pygame.init()
@@ -12,7 +13,7 @@ pygame.mixer.init()
 
 
 WIDTH = 1600
-HEIGHT = 870
+HEIGHT = 900
 p_WIDTH = 100
 p_HEIGHT = 200
 window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -102,6 +103,23 @@ pontos = 0
 lives = 3
 colidindo = False
 
+world_data = [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+]
+
+# Criação do mundo
+world = World(world_data)
+
 
 
 while game:
@@ -177,6 +195,7 @@ while game:
 
     #---- Gera saídas
     window.blit(background, (0, 0))
+    world.draw(window)
     # Desenhando os morcegos
     all_sprites.draw(window)
 
