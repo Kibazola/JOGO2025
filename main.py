@@ -55,6 +55,7 @@ moeda_musc = pygame.mixer.Sound('assets/snd/MOEDA DO SUPER MÁRIO.mp3')
 winner_music = pygame.mixer.Sound('assets/snd/Rocket Jr - A Lil BIT _ Eccentric, Quirky _ Bit Music-yt.savetube.me.mp3')
 music_morcego = pygame.mixer.Sound('assets/snd/SOM DE MORCEGOSSOUND OF BAT.mp3')
 music_morcego.set_volume(0.05)
+music_jump = pygame.mixer.Sound('assets/snd/mixkit-player-jumping-in-a-video-game-2043.wav')
 # Loop principal do jogo
 game = True
 
@@ -144,6 +145,7 @@ while game:
                     player.speedx = 8
                 if event.key == pygame.K_SPACE and not player.isJump:
                     player.isJump = True
+                    music_jump.play()
         else:
             if event.key == pygame.K_SPACE:
                     # Reinicia o jogo
