@@ -14,7 +14,7 @@ class Pessoa(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT - 10
         self.speedx = 0
         self.isJump = False
-        self.jumpCount = 18
+        self.jumpCount = 15
         self.jumpSpeed = 8 
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT - 100
