@@ -20,6 +20,8 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Jogo')
 
 # Criando as imagens
+winner_img = pygame.image.load('assets/img/istockphoto.jpg').convert()
+winner_img = pygame.transform.scale(winner_img, (WIDTH, HEIGHT))
 game_over_img = pygame.image.load('assets/img/game_over1.webp').convert()
 game_over_img = pygame.transform.scale(game_over_img, (WIDTH, HEIGHT))
 background = pygame.image.load('assets/img/fundo novo.jpg').convert()
@@ -235,6 +237,13 @@ while game:
         # reposiciona a moeda em nova posição no chão
             nova_x = random.randint(200, WIDTH - 200)
             moeda.rect.x = nova_x
+
+    hits_porta = pygame.sprite.spritecollide(player, porta_sprit, False)
+    if hits_porta:
+        window.blit(winner_img, (10, 10))
+        pygame.display.update()
+        sleep(3)
+        game = False
 
     
         
