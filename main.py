@@ -63,7 +63,7 @@ FPS = 30
 all_sprites = pygame.sprite.Group()
 all_morcegos_e_espinhos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
-
+porta_sprit = pygame.sprite.Group()
 
 
 
@@ -89,7 +89,7 @@ for i in range(2):  # quantidade de espinhos
         x_m = random.randint(200, WIDTH - 200)
     espinho = ItemBox("espinho", x, 750)
     moeda = ItemBox("moeda", x_m, 750)
-   
+
 
     all_sprites.add(espinho)
     all_sprites.add(moeda)
@@ -97,7 +97,9 @@ for i in range(2):  # quantidade de espinhos
     all_moedas.add(moeda)
 
 
-
+porta = ItemBox("porta",1423, 223)
+all_sprites.add(porta)
+porta_sprit.add(porta)
 pontos = 0
 lives = 3
 colidindo = False
@@ -113,7 +115,7 @@ world_data = [
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,2,2,2,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3],
+    [1,2,2,2,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,1],
 ]
 
 # Criação do mundo
