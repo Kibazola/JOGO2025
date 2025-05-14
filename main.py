@@ -53,7 +53,8 @@ font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
 gm_music = pygame.mixer.Sound('assets/snd/GAME OVER efeito sonoro!!.mp3')
 moeda_musc = pygame.mixer.Sound('assets/snd/MOEDA DO SUPER MÁRIO.mp3')
 winner_music = pygame.mixer.Sound('assets/snd/Rocket Jr - A Lil BIT _ Eccentric, Quirky _ Bit Music-yt.savetube.me.mp3')
-
+music_morcego = pygame.mixer.Sound('assets/snd/SOM DE MORCEGOSSOUND OF BAT.mp3')
+music_morcego.set_volume(0.05)
 # Loop principal do jogo
 game = True
 
@@ -238,8 +239,11 @@ while game:
             nova_x = random.randint(200, WIDTH - 200)
             moeda.rect.x = nova_x
 
+    #Verifica se houve colisão entre o jogador e a porta
     hits_porta = pygame.sprite.spritecollide(player, porta_sprit, False)
     if hits_porta:
+        music.stop()
+        music_morcego.stop()
         window.blit(winner_img, (10, 10))
         pygame.display.update()
         winner_music.play()
