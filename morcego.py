@@ -14,6 +14,7 @@ img_morcego = [
 ]
 
 music_morcego = pygame.mixer.Sound('assets/snd/SOM DE MORCEGOSSOUND OF BAT.mp3')
+
 music_morcego.set_volume(0.05)
 
 # Criando a classe Morcego:
