@@ -1,15 +1,15 @@
+
 import pygame
 from tela_de_carregamento import tela_carregamento
-from pessoa import Pessoa
+from pessoa import*
 from morcego import Morcego
 import random
 from items import ItemBox
 from time import sleep
-from plataforma import World
+from plataforma import*
 
 
 pygame.init()
-
 pygame.mixer.init()
 
 
@@ -70,16 +70,18 @@ all_morcegos_e_espinhos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
 porta_sprit = pygame.sprite.Group()
 
+blocos = pygame.sprite.Group()
+
 world_data = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,2,2,1],
-    [1,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,2,2,0,2,3,2,2,0,2,0,2,0,2,1],
+    [1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,2,0,0,0,0,0,2,2,2,2,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,2,2,0,0,0,0,2,2,2,2,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,2,2,2,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,1],
 ]
@@ -88,7 +90,7 @@ world_data = [
 world = World(world_data)
 
 # Criando o jogador
-player = Pessoa(img_personagem, WIDTH, HEIGHT)
+player = Pessoa(img_personagem, WIDTH, HEIGHT, world.bloco_group)
 all_sprites.add(player)
 
 #Criando os morcegos:
@@ -145,7 +147,8 @@ while game:
                 if event.key == pygame.K_RIGHT:
                     player.speedx = 8
                 if event.key == pygame.K_SPACE and not player.isJump:
-                    player.isJump = True
+                    player.jump()
+                    #tplayer.isJump = True
                     music_jump.play()
         else:
             if event.key == pygame.K_SPACE:

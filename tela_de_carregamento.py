@@ -9,9 +9,10 @@ def tela_carregamento(window, WIDTH, HEIGHT):
     music_inicio = pygame.mixer.Sound('assets/snd/William Rosati - Floating Also ♫ NO COPYRIGHT 8-bit Music.mp3')
 
     music_inicio.play()
-    
+
     progresso = 0
 
+    
     while progresso <= 100:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
