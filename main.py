@@ -66,7 +66,7 @@ FPS = 30
 
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
-all_morcegos_e_espinhos = pygame.sprite.Group()
+all_morcegos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
 porta_sprit = pygame.sprite.Group()
 
@@ -97,7 +97,7 @@ all_sprites.add(player)
 for i in range(3):
     morcego = Morcego(img_morcego[i], WIDTH)
     all_sprites.add(morcego)
-    all_morcegos_e_espinhos.add(morcego)
+    all_morcegos.add(morcego)
 
 #Criando o items espinhos:
 # Este código foi gerado por AI
@@ -109,13 +109,10 @@ for i in range(2):  # quantidade de espinhos
     # Evita que a moeda fique muito perto do espinho
     while abs(x - x_m) < 100:
         x_m = random.randint(200, WIDTH - 200)
-    espinho = ItemBox("espinho", x, 750)
     moeda = ItemBox("moeda", x_m, 750)
 
 
-    all_sprites.add(espinho)
     all_sprites.add(moeda)
-    all_morcegos_e_espinhos.add(espinho)
     all_moedas.add(moeda)
 
 
@@ -158,7 +155,7 @@ while game:
                     colidindo = False
 
                     # Remove todos os obstáculos
-                    for obstaculo in all_morcegos_e_espinhos:
+                    for obstaculo in all_morcegos:
                         if obstaculo != player:  # Não remove o jogador
                             obstaculo.kill()
                     for moeda in all_moedas:
@@ -168,7 +165,7 @@ while game:
                     for i in range(3):
                         morcego = Morcego(img_morcego[i], WIDTH)
                         all_sprites.add(morcego)
-                        all_morcegos_e_espinhos.add(morcego)
+                        all_morcegos.add(morcego)
 
                     #Criando o items espinhos:
                     # Este código foi gerado por AI
@@ -180,13 +177,13 @@ while game:
                         # Evita que a moeda fique muito perto do espinho
                         while abs(x - x_m) < 100:
                             x_m = random.randint(200, WIDTH - 200)
-                        espinho = ItemBox("espinho", x, 750)
+                        #espinho = ItemBox("espinho", x, 750)
                         moeda = ItemBox("moeda", x_m, 750)
                     
 
-                        all_sprites.add(espinho)
+                        #all_sprites.add(espinho)
                         all_sprites.add(moeda)
-                        all_morcegos_e_espinhos.add(espinho)
+                        #all_morcegos_e_espinhos.add(espinho)
                         all_moedas.add(moeda)
                     
                     # Reposiciona o jogador
@@ -219,7 +216,7 @@ while game:
     # Verifica se houve colisão entre o jogador e morcego ou espinho
 
     
-    hits = pygame.sprite.spritecollide(player,all_morcegos_e_espinhos, False)
+    hits = pygame.sprite.spritecollide(player,all_morcegos, False)
 
     if hits:
         if hits and not colidindo:
