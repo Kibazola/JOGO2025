@@ -90,8 +90,13 @@ world_data = [
 world = World(world_data)
 
 # Criando o jogador
-player = Pessoa(img_personagem, WIDTH, HEIGHT, world.bloco_group)
+# player = Pessoa(img_personagem, WIDTH, HEIGHT, world.bloco_group,world.spike_group)
+# all_sprites.add(player)
+start_x = 1000
+start_y = 500 #HEIGHT - tile_size * 2
+player = Pessoa(img_personagem, start_x, start_y, world.bloco_group, world.spike_group,WIDTH, HEIGHT)
 all_sprites.add(player)
+
 
 #Criando os morcegos:
 for i in range(3):
@@ -214,6 +219,18 @@ while game:
         pygame.display.update()
         continue  # Pula o resto do loop se o jogo acabou
     # Verifica se houve colisão entre o jogador e morcego ou espinho
+
+
+    # Supondo que o nome do seu personagem seja `player`
+    if player.morto:
+        music_dor.play()
+        sleep(1)
+        window.blit(game_over_img, (0, 0))  # use (0, 0) para preencher a tela corretamente
+        pygame.display.update()
+        gm_music.play()
+        sleep(5)
+        game = False 
+
 
     
     hits = pygame.sprite.spritecollide(player,all_morcegos, False)

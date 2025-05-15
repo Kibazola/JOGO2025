@@ -1,15 +1,13 @@
 import pygame
-import pygame
+
 
 class Pessoa(pygame.sprite.Sprite):
-    def __init__(self, img_personagem, WIDTH, HEIGHT, blocks):
+    def __init__(self, img_personagem,start_x,start_y, blocks,spikes,screen_width, screen_height):
         super().__init__()
         self.original_image = img_personagem
         self.image = img_personagem
         self.rect = self.image.get_rect()
         self.rect = self.rect.inflate(-20, -20)
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
 
         self.speedx = 0
         self.speedy = 0
@@ -17,9 +15,14 @@ class Pessoa(pygame.sprite.Sprite):
         self.gravity = 1
         self.isJump = False
         self.blocks = blocks
-        self.WIDTH = WIDTH
-        self.HEIGHT = HEIGHT
+        self.WIDTH = screen_width
+        self.HEIGHT = screen_height
+    
+        self.spikes = spikes
         self.facing_right = True
+        self.morto = False
+        self.rect.x = start_x
+        self.rect.y = start_y
 
     def update(self):
         # Direção
@@ -53,6 +56,11 @@ class Pessoa(pygame.sprite.Sprite):
             elif self.speedy < 0:  # Subindo
                 self.rect.top = block.rect.bottom
                 self.speedy = 0
+
+        if pygame.sprite.spritecollide(self, self.spikes, False):
+            self.morto = True
+            
+        
 
         self.isJump = not on_ground  # ATUALIZA AQUI
 

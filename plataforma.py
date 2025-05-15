@@ -2,19 +2,9 @@
 import pygame
 from pygame.locals import *
 
-pygame.init()
-
-WIDTH = 1600
-HEIGHT = 900
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Platformer')
 
 # load images
 tile_size = 80
-
-background = pygame.image.load('assets/img/fundo novo.jpg').convert()
-background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 # Classe do bloco como sprite
 class Bloco(pygame.sprite.Sprite):
@@ -28,6 +18,7 @@ class Bloco(pygame.sprite.Sprite):
 class World():
     def __init__(self, data):
         self.bloco_group = pygame.sprite.Group()
+        self.spike_group = pygame.sprite.Group()
 
         # carrega imagens
         dirt_img = pygame.image.load('assets/img/dirt.png')
@@ -54,12 +45,15 @@ class World():
                 elif tile == 3:
                     img = pygame.transform.scale(spike_img, (tile_size, tile_size))
                     bloco = Bloco(img, x, y)
-                    self.bloco_group.add(bloco)
+                    #self.bloco_group.add(bloco)
+                    self.spike_group.add(bloco)
+                    #self.spike_group.draw(screen)
 
                 col_count += 1
             row_count += 1
 
     def draw(self, screen):
         self.bloco_group.draw(screen)
+        self.spike_group.draw(screen) 
 
 
