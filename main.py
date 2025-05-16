@@ -7,8 +7,7 @@ import random
 from items import ItemBox
 from time import sleep
 from plataforma import*
-from p_teste import *
-from pla_teste import*
+
 
 
 pygame.init()
@@ -69,7 +68,7 @@ FPS = 30
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
 all_morcegos = pygame.sprite.Group()
-all_moedas = pygame.sprite.Group()
+#all_moedas = pygame.sprite.Group()
 porta_sprit = pygame.sprite.Group()
 moedas = pygame.sprite.Group()
 blocos = pygame.sprite.Group()
@@ -109,18 +108,18 @@ for i in range(3):
 #Criando o items espinhos:
 # Este código foi gerado por AI
 
-for i in range(2):  # quantidade de espinhos
-    x = random.randint(200, WIDTH - 200)
-    x_m = random.randint(200, WIDTH - 200)
-    y = random.randint(300, 800)
-    # Evita que a moeda fique muito perto do espinho
-    while abs(x - x_m) < 100:
-        x_m = random.randint(200, WIDTH - 200)
-    moeda = ItemBox("moeda", x_m, 750)
+# for i in range(2):  # quantidade de espinhos
+#     x = random.randint(200, WIDTH - 200)
+#     x_m = random.randint(200, WIDTH - 200)
+#     y = random.randint(300, 800)
+#     # Evita que a moeda fique muito perto do espinho
+#     while abs(x - x_m) < 100:
+#         x_m = random.randint(200, WIDTH - 200)
+#     moeda = ItemBox("moeda", x_m, 750)
 
 
-    all_sprites.add(moeda)
-    all_moedas.add(moeda)
+#     all_sprites.add(moeda)
+#     all_moedas.add(moeda)
 
 
 porta = ItemBox("porta",1423, 223)
@@ -165,9 +164,9 @@ while game:
                     for obstaculo in all_morcegos:
                         if obstaculo != player:  # Não remove o jogador
                             obstaculo.kill()
-                    for moeda in all_moedas:
-                        if moeda != player:
-                            moeda.kill()
+                    # for moeda in all_moedas:
+                    #     if moeda != player:
+                    #         moeda.kill()
                             #Criando os morcegos:
                     for i in range(3):
                         morcego = Morcego(img_morcego[i], WIDTH)
@@ -177,21 +176,21 @@ while game:
                     #Criando o items espinhos:
                     # Este código foi gerado por AI
 
-                    for i in range(2):  # quantidade de espinhos
-                        x = random.randint(200, WIDTH - 200)
-                        x_m = random.randint(200, WIDTH - 200)
-                        y = random.randint(300, 800)
-                        # Evita que a moeda fique muito perto do espinho
-                        while abs(x - x_m) < 100:
-                            x_m = random.randint(200, WIDTH - 200)
-                        #espinho = ItemBox("espinho", x, 750)
-                        moeda = ItemBox("moeda", x_m, 750)
+                    # for i in range(2):  # quantidade de espinhos
+                    #     x = random.randint(200, WIDTH - 200)
+                    #     x_m = random.randint(200, WIDTH - 200)
+                    #     y = random.randint(300, 800)
+                    #     # Evita que a moeda fique muito perto do espinho
+                    #     while abs(x - x_m) < 100:
+                    #         x_m = random.randint(200, WIDTH - 200)
+                    #     #espinho = ItemBox("espinho", x, 750)
+                    #     moeda = ItemBox("moeda", x_m, 750)
                     
 
                         #all_sprites.add(espinho)
-                        all_sprites.add(moeda)
+                        #all_sprites.add(moeda)
                         #all_morcegos_e_espinhos.add(espinho)
-                        all_moedas.add(moeda)
+                        #all_moedas.add(moeda)
                     
                     # Reposiciona o jogador
                     player.rect.x = 50
