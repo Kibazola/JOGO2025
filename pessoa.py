@@ -35,15 +35,6 @@ class Pessoa(pygame.sprite.Sprite):
 
         self.image = pygame.transform.flip(self.original_image, True, False) if self.facing_right else self.original_image
 
-        # Movimento horizontal
-        self.rect.x += self.speedx
-        collisions = pygame.sprite.spritecollide(self, self.blocks, False)
-        for block in collisions:
-            if self.speedx > 0:
-                self.rect.right = block.rect.left
-            elif self.speedx < 0:
-                self.rect.left = block.rect.right
-
         # Movimento vertical (gravidade)
         self.speedy += self.gravity
         self.rect.y += self.speedy
@@ -58,6 +49,16 @@ class Pessoa(pygame.sprite.Sprite):
             elif self.speedy < 0:  # Subindo
                 self.rect.top = block.rect.bottom
                 self.speedy = 0
+
+        # Movimento horizontal
+        self.rect.x += self.speedx
+        collisions = pygame.sprite.spritecollide(self, self.blocks, False)
+        for block in collisions:
+            if self.speedx > 0:
+                self.rect.right = block.rect.left
+            elif self.speedx < 0:
+                self.rect.left = block.rect.right
+
 
         if pygame.sprite.spritecollide(self, self.spikes, False):
             self.morto = True

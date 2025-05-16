@@ -23,6 +23,30 @@ class Bloco(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
 
+
+
+class Bloco_movel(pygame.sprite.Sprite):
+    def __init__(self,img, x,y,m_y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+        self.speedy = -8
+        self.min_y =  m_y
+        self.max_y = y 
+
+
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.y < self.min_y and self.speedy  <0:
+            self.speedy = - self.speedy 
+            self.rect.y = self.min_y
+
+
+        if self.rect.y > self.max_y and self.speedy  >0:
+            self.speedy = - self.speedy 
+            self.rect.y = self.max_y
+
 # Classe World (mundo do jogo)
 class World():
     def __init__(self, data):
@@ -63,6 +87,11 @@ class World():
                     moeda = Bloco(img, x, y)
                     self.moeda_group.add(moeda)
 
+                elif tile == 5:
+                    img = pygame.transform.scale(grass_img, (tile_size, tile_size))
+                    bloco = Bloco_movel(img, x, y,5*tile_size)
+                    self.bloco_group.add(bloco)
+
 
                 col_count += 1
             row_count += 1
@@ -71,5 +100,11 @@ class World():
         self.bloco_group.draw(screen)
         self.spike_group.draw(screen)
         self.moeda_group.draw(screen)
+
+
+    
+    def update(self):
+       
+       self.bloco_group.update()
 
 
