@@ -34,6 +34,7 @@ class Pessoa(pygame.sprite.Sprite):
         self.WIDTH = screen_width
         self.HEIGHT = screen_height
         self.spikes = spikes
+
         self.facing_right = True
         self.morto = False
         self.recolhida = False
@@ -54,6 +55,7 @@ class Pessoa(pygame.sprite.Sprite):
             frame = pygame.transform.flip(frame, True, False)  # Inverte horizontalmente
 
         self.image = frame
+
     def update(self):
         # Atualiza a direção (VERIFICA SE HÁ MOVIMENTO)
         if self.speedx > 0:  # Direita
@@ -72,14 +74,6 @@ class Pessoa(pygame.sprite.Sprite):
         # Atualiza animação
         self.animate()
 
-        # Movimento horizontal (código original)
-        self.rect.x += self.speedx
-        collisions = pygame.sprite.spritecollide(self, self.blocks, False)
-        for block in collisions:
-            if self.speedx > 0:
-                self.rect.right = block.rect.left
-            elif self.speedx < 0:
-                self.rect.left = block.rect.right
 
         # Movimento vertical (código original)
         self.speedy += self.gravity
@@ -95,6 +89,15 @@ class Pessoa(pygame.sprite.Sprite):
             elif self.speedy < 0:
                 self.rect.top = block.rect.bottom
                 self.speedy = 0
+
+           # Movimento horizontal (código original)
+        self.rect.x += self.speedx
+        collisions = pygame.sprite.spritecollide(self, self.blocks, False)
+        for block in collisions:
+            if self.speedx > 0:
+                self.rect.right = block.rect.left
+            elif self.speedx < 0:
+                self.rect.left = block.rect.right
 
         # Colisões (código original)
         if pygame.sprite.spritecollide(self, self.spikes, False):
