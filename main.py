@@ -92,7 +92,14 @@ world = World(world_data)
 
 start_x = 1000
 start_y = 500 
-player = Pessoa(img_personagem, start_x, start_y,world.moeda_group,world.bloco_group, world.spike_group,WIDTH, HEIGHT)
+# Este código foi gerado por IA (GPT)
+player_sprites = { 
+    "idle": "assets/img/Personagem/parado.png",
+    "run1": "assets/img/Personagem/mov1.png",
+    "run2": "assets/img/Personagem/mov2.png",
+    "jump": "assets/img/Personagem/mov2.png"
+}
+player = Pessoa(player_sprites, start_x, start_y,world.moeda_group,world.bloco_group, world.spike_group,WIDTH, HEIGHT)
 all_sprites.add(player)
 
 
@@ -196,7 +203,6 @@ while game:
         continue  # Pula o resto do loop se o jogo acabou
 
 
-    # Supondo que o nome do seu personagem seja `player`
     if player.morto:
         music_dor.play()
         lives -= 2
