@@ -7,6 +7,8 @@ import random
 from items import ItemBox
 from time import sleep
 from plataforma import*
+from p_teste import *
+from pla_teste import*
 
 
 pygame.init()
@@ -69,13 +71,13 @@ all_sprites = pygame.sprite.Group()
 all_morcegos = pygame.sprite.Group()
 all_moedas = pygame.sprite.Group()
 porta_sprit = pygame.sprite.Group()
-
+moedas = pygame.sprite.Group()
 blocos = pygame.sprite.Group()
 
 world_data = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,4,0,4,0,4,0,0,4,0,4,0,0,1],
     [1,0,0,0,0,0,2,2,0,2,3,2,2,0,2,0,2,0,2,1],
     [1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -94,7 +96,7 @@ world = World(world_data)
 # all_sprites.add(player)
 start_x = 1000
 start_y = 500 #HEIGHT - tile_size * 2
-player = Pessoa(img_personagem, start_x, start_y, world.bloco_group, world.spike_group,WIDTH, HEIGHT)
+player = Pessoa(img_personagem, start_x, start_y,world.moeda_group,world.bloco_group, world.spike_group,WIDTH, HEIGHT)
 all_sprites.add(player)
 
 
@@ -247,17 +249,18 @@ while game:
         
 
     #Verifica se houve colisão entre o jogador  e moeda
-    hits_m = pygame.sprite.spritecollide(player,all_moedas, False)
-    if hits_m:
+    
+    if player.recolhida:
         pontos+=25
         moeda_musc.play()
         if pontos % 1000 ==0:
             lives+=1
-        for moeda in hits_m:
+        player.recolhida = False
+        # for moeda in moedas:
 
-        # reposiciona a moeda em nova posição no chão
-            nova_x = random.randint(200, WIDTH - 200)
-            moeda.rect.x = nova_x
+        # # reposiciona a moeda em nova posição no chão
+        #     nova_x = random.randint(200, WIDTH - 200)
+        #     moeda.rect.x = nova_x
 
     #Verifica se houve colisão entre o jogador e a porta
     hits_porta = pygame.sprite.spritecollide(player, porta_sprit, False)
@@ -270,6 +273,7 @@ while game:
         sleep(15)
         game = False
 
+    
     
         
     

@@ -2,7 +2,7 @@ import pygame
 
 
 class Pessoa(pygame.sprite.Sprite):
-    def __init__(self, img_personagem,start_x,start_y, blocks,spikes,screen_width, screen_height):
+    def __init__(self, img_personagem,start_x,start_y,moeda,blocks,spikes,screen_width, screen_height):
         super().__init__()
         self.original_image = img_personagem
         self.image = img_personagem
@@ -15,12 +15,14 @@ class Pessoa(pygame.sprite.Sprite):
         self.gravity = 1
         self.isJump = False
         self.blocks = blocks
+        self.moeda = moeda
         self.WIDTH = screen_width
         self.HEIGHT = screen_height
     
         self.spikes = spikes
         self.facing_right = True
         self.morto = False
+        self.recolhida = False
         self.rect.x = start_x
         self.rect.y = start_y
 
@@ -59,7 +61,8 @@ class Pessoa(pygame.sprite.Sprite):
 
         if pygame.sprite.spritecollide(self, self.spikes, False):
             self.morto = True
-            
+        if pygame.sprite.spritecollide(self, self.moeda, True):
+            self.recolhida = True
         
 
         self.isJump = not on_ground  # ATUALIZA AQUI
