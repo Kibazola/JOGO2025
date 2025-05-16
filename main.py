@@ -193,10 +193,11 @@ while game:
                         #all_moedas.add(moeda)
                     
                     # Reposiciona o jogador
-                    player.rect.x = 50
-                    player.rect.y = HEIGHT - 200
+                    player.rect.x = 1000
+                    player.rect.y = 500
                     player.isJump = False
                     player.speedx = 0
+                    player.morto = False
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                         player.speedx += 8
@@ -225,12 +226,12 @@ while game:
     # Supondo que o nome do seu personagem seja `player`
     if player.morto:
         music_dor.play()
-        sleep(1)
-        window.blit(game_over_img, (0, 0))  # use (0, 0) para preencher a tela corretamente
-        pygame.display.update()
-        gm_music.play()
-        sleep(5)
-        game = False 
+        lives -= 2
+        player.rect.x = 1000
+        player.rect.y = 500
+        player.isJump = False
+        player.speedx = 0
+        player.morto = False
 
 
     
