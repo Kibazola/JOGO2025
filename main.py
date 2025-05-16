@@ -68,7 +68,6 @@ FPS = 30
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
 all_morcegos = pygame.sprite.Group()
-#all_moedas = pygame.sprite.Group()
 porta_sprit = pygame.sprite.Group()
 moedas = pygame.sprite.Group()
 blocos = pygame.sprite.Group()
@@ -90,11 +89,9 @@ world_data = [
 # Criação do mundo
 world = World(world_data)
 
-# Criando o jogador
-# player = Pessoa(img_personagem, WIDTH, HEIGHT, world.bloco_group,world.spike_group)
-# all_sprites.add(player)
+
 start_x = 1000
-start_y = 500 #HEIGHT - tile_size * 2
+start_y = 500 
 player = Pessoa(img_personagem, start_x, start_y,world.moeda_group,world.bloco_group, world.spike_group,WIDTH, HEIGHT)
 all_sprites.add(player)
 
@@ -105,28 +102,12 @@ for i in range(3):
     all_sprites.add(morcego)
     all_morcegos.add(morcego)
 
-#Criando o items espinhos:
-# Este código foi gerado por AI
-
-# for i in range(2):  # quantidade de espinhos
-#     x = random.randint(200, WIDTH - 200)
-#     x_m = random.randint(200, WIDTH - 200)
-#     y = random.randint(300, 800)
-#     # Evita que a moeda fique muito perto do espinho
-#     while abs(x - x_m) < 100:
-#         x_m = random.randint(200, WIDTH - 200)
-#     moeda = ItemBox("moeda", x_m, 750)
-
-
-#     all_sprites.add(moeda)
-#     all_moedas.add(moeda)
-
 
 porta = ItemBox("porta",1423, 223)
 all_sprites.add(porta)
 porta_sprit.add(porta)
 pontos = 0
-lives = 3
+lives = 4
 colidindo = False
 
 
@@ -151,46 +132,36 @@ while game:
                     player.speedx = 8
                 if event.key == pygame.K_SPACE and not player.isJump:
                     player.jump()
-                    #tplayer.isJump = True
                     music_jump.play()
         else:
+            window.blit(game_over_img, (10, 10))
+            pygame.display.update()
+            music_morcego.stop()
+            music.stop()
+            sleep(1)
+            if not cont_m:
+                cont_m = True
+                gm_music.play()
+                pygame.display.update()
+                continue  # Pula o resto do loop se o jogo acabou
+            
             if event.key == pygame.K_SPACE:
                     # Reinicia o jogo
-                    lives = 3
+                    lives = 4
                     pontos = 0
                     colidindo = False
-
+                    music.play()
                     # Remove todos os obstáculos
                     for obstaculo in all_morcegos:
                         if obstaculo != player:  # Não remove o jogador
                             obstaculo.kill()
-                    # for moeda in all_moedas:
-                    #     if moeda != player:
-                    #         moeda.kill()
-                            #Criando os morcegos:
+
+                    #Criando os morcegos:
                     for i in range(3):
                         morcego = Morcego(img_morcego[i], WIDTH)
                         all_sprites.add(morcego)
                         all_morcegos.add(morcego)
 
-                    #Criando o items espinhos:
-                    # Este código foi gerado por AI
-
-                    # for i in range(2):  # quantidade de espinhos
-                    #     x = random.randint(200, WIDTH - 200)
-                    #     x_m = random.randint(200, WIDTH - 200)
-                    #     y = random.randint(300, 800)
-                    #     # Evita que a moeda fique muito perto do espinho
-                    #     while abs(x - x_m) < 100:
-                    #         x_m = random.randint(200, WIDTH - 200)
-                    #     #espinho = ItemBox("espinho", x, 750)
-                    #     moeda = ItemBox("moeda", x_m, 750)
-                    
-
-                        #all_sprites.add(espinho)
-                        #all_sprites.add(moeda)
-                        #all_morcegos_e_espinhos.add(espinho)
-                        #all_moedas.add(moeda)
                     
                     # Reposiciona o jogador
                     player.rect.x = 1000
@@ -214,13 +185,15 @@ while game:
         # Mostra tela de game over
        # window.blit(background, (0, 0))
         window.blit(game_over_img, (10, 10))
-        sleep(3)
+        pygame.display.update()
+        music_morcego.stop()
+        music.stop()
+        sleep(2)
         if not cont_m:
             cont_m = True
             gm_music.play()
         pygame.display.update()
         continue  # Pula o resto do loop se o jogo acabou
-    # Verifica se houve colisão entre o jogador e morcego ou espinho
 
 
     # Supondo que o nome do seu personagem seja `player`
@@ -232,11 +205,10 @@ while game:
         player.isJump = False
         player.speedx = 0
         player.morto = False
-
+        all_sprites.update()
 
     
     hits = pygame.sprite.spritecollide(player,all_morcegos, False)
-
     if hits:
         if hits and not colidindo:
 
@@ -248,19 +220,14 @@ while game:
         colidindo = False
         
 
-    #Verifica se houve colisão entre o jogador  e moeda
-    
+    #Verifica se houve colisão entre o jogador  e moeda   
     if player.recolhida:
         pontos+=25
         moeda_musc.play()
         if pontos % 1000 ==0:
             lives+=1
         player.recolhida = False
-        # for moeda in moedas:
 
-        # # reposiciona a moeda em nova posição no chão
-        #     nova_x = random.randint(200, WIDTH - 200)
-        #     moeda.rect.x = nova_x
 
     #Verifica se houve colisão entre o jogador e a porta
     hits_porta = pygame.sprite.spritecollide(player, porta_sprit, False)
@@ -272,12 +239,8 @@ while game:
         winner_music.play()
         sleep(15)
         game = False
-
-    
-    
         
     
-
     #---- Gera saídas
     window.blit(background, (0, 0))
     world.draw(window)
