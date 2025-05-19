@@ -33,6 +33,12 @@ class Bloco_movel(pygame.sprite.Sprite):
         self.max_y = y 
 
 
+
+
+#
+
+
+
     def update(self):
         self.rect.y += self.speedy
         if self.rect.y < self.min_y and self.speedy  <0:
@@ -43,6 +49,32 @@ class Bloco_movel(pygame.sprite.Sprite):
         if self.rect.y > self.max_y and self.speedy  >0:
             self.speedy = - self.speedy 
             self.rect.y = self.max_y
+
+
+
+    ######
+
+class Bloco_movel_x(pygame.sprite.Sprite):
+    def __init__(self, img, x, y, distancia_x=15):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+
+        self.speedx = 2  # velocidade no eixo x
+
+        # min_x e max_x baseados na mesma distância a partir da posição inicial
+        self.min_x = x 
+        self.max_x = x + distancia_x // 2
+
+    def update(self):
+        self.rect.x += self.speedx
+        if self.rect.x < self.min_x and self.speedx < 0:
+            self.speedx = -self.speedx
+            self.rect.x = self.min_x
+        if self.rect.x > self.max_x and self.speedx > 0:
+            self.speedx = -self.speedx
+            self.rect.x = self.max_x
 
 # Classe World (mundo do jogo)
 class World():
@@ -87,6 +119,11 @@ class World():
                 elif tile == 5:
                     img = pygame.transform.scale(grass_img, (tile_size, tile_size))
                     bloco = Bloco_movel(img, x, y,5*tile_size)
+                    self.bloco_group.add(bloco)
+
+                elif tile == 6:
+                    img = pygame.transform.scale(grass_img, (tile_size, tile_size))
+                    bloco = Bloco_movel_x(img, x, y,2*tile_size)
                     self.bloco_group.add(bloco)
 
 
