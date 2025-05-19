@@ -246,7 +246,10 @@ while game:
         pygame.display.update()
         winner_music.play()
         sleep(15)
-        game = False
+        #game = False
+        import main2
+        pygame.quit()
+        main2.main()
         
     
     #---- Gera saídas

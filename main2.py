@@ -125,6 +125,13 @@ while game:
 
     clock.tick(FPS)
     world.update()
+    for bloco in world.bloco_group:
+        if hasattr(bloco, 'speedx'):  # Verifica se o bloco se move
+            if player.rect.bottom <= bloco.rect.top + 5 and \
+            player.rect.bottom >= bloco.rect.top - 5 and \
+            player.rect.centerx >= bloco.rect.left and \
+            player.rect.centerx <= bloco.rect.right:
+                player.rect.x += bloco.speedx
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
@@ -245,7 +252,7 @@ while game:
         pygame.display.update()
         winner_music.play()
         sleep(15)
-        game = False
+        
         
     
     #---- Gera saídas
