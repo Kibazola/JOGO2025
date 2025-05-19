@@ -7,6 +7,7 @@ import random
 from items import ItemBox
 from time import sleep
 from plataforma import*
+from tela_de_carregamento2 import*
 
 
 
@@ -45,7 +46,7 @@ img_morcego = [
 
 
 # Chama a função tela de carregamento:
-tela_carregamento(window, WIDTH, HEIGHT)
+tela_carregamento2(window, WIDTH, HEIGHT)
 
 music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Background Music by Alec Koff.mp3')
 music.set_volume(0.5)  # ajusta o volume
