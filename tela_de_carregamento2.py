@@ -3,7 +3,7 @@ import time
 
 def tela_carregamento2(window, WIDTH, HEIGHT):
     font = pygame.font.SysFont(None, 60)
-    img_fundo = pygame.image.load('assets/img/main/fundomain.png').convert()
+    img_fundo = pygame.image.load('assets/img/main2/fundomain.png').convert()
     img_fundo = pygame.transform.scale(img_fundo, (WIDTH, HEIGHT))
     
 
@@ -30,6 +30,6 @@ def tela_carregamento2(window, WIDTH, HEIGHT):
         progresso += 2
 
 
-    tela_carregamento2(window, WIDTH, HEIGHT)
+
 
     

@@ -1,4 +1,3 @@
-
 import pygame
 from tela_de_carregamento import tela_carregamento
 from pessoa import*
@@ -6,7 +5,7 @@ from morcego import Morcego
 import random
 from items import ItemBox
 from time import sleep
-from plataforma import*
+from plataforma2 import*
 from tela_de_carregamento2 import*
 
 
@@ -27,7 +26,7 @@ winner_img = pygame.image.load('assets/img/istockphoto.jpg').convert()
 winner_img = pygame.transform.scale(winner_img, (WIDTH, HEIGHT))
 game_over_img = pygame.image.load('assets/img/game_over1.webp').convert()
 game_over_img = pygame.transform.scale(game_over_img, (WIDTH, HEIGHT))
-background = pygame.image.load('assets/img/fundo novo.jpg').convert()
+background = pygame.image.load('assets/img/main2/IMG-20250517-WA0004.jpg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 img_personagem = pygame.image.load('assets/img/personagem_normal-removebg-preview (1).png').convert_alpha()
 img_personagem = pygame.transform.scale(img_personagem, (p_WIDTH, p_HEIGHT))
@@ -46,7 +45,7 @@ img_morcego = [
 
 
 # Chama a função tela de carregamento:
-tela_carregamento(window, WIDTH, HEIGHT)
+tela_carregamento2(window, WIDTH, HEIGHT)
 
 music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Background Music by Alec Koff.mp3')
 music.set_volume(0.5)  # ajusta o volume
