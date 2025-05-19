@@ -110,7 +110,7 @@ for i in range(3):
     all_morcegos.add(morcego)
 
 
-porta = ItemBox("porta",1423, 223)
+porta = ItemBox("porta",55, 197)
 all_sprites.add(porta)
 porta_sprit.add(porta)
 pontos = 0
