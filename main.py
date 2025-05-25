@@ -23,6 +23,8 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Jogo')
 
 # Criando as imagens
+next_level_img = pygame.image.load('assets/img/next_level.jpg').convert()
+next_level_img = pygame.transform.scale(next_level_img, (WIDTH, HEIGHT))
 winner_img = pygame.image.load('assets/img/istockphoto.jpg').convert()
 winner_img = pygame.transform.scale(winner_img, (WIDTH, HEIGHT))
 game_over_img = pygame.image.load('assets/img/game_over1.webp').convert()
@@ -242,10 +244,10 @@ while game:
     if hits_porta:
         music.stop()
         music_morcego.stop()
-        window.blit(winner_img, (10, 10))
+        window.blit(next_level_img, (10, 10))
         pygame.display.update()
         winner_music.play()
-        sleep(15)
+        sleep(10)
         #game = False
         import main2
         pygame.quit()
