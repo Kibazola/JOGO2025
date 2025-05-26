@@ -5,6 +5,7 @@ class Pessoa(pygame.sprite.Sprite):
         super().__init__()
         
         # Carrega os frames de animação
+        # O bloco de código abaixo foi gerado por AI (ChatGPT)
         self.frames = {
             'idle': [pygame.image.load("assets/img/Personagem/parado.png").convert_alpha()],
             'run': [pygame.image.load(f"assets/img/Personagem/mov{i}.png").convert_alpha() for i in range(1, 3)],
@@ -90,7 +91,7 @@ class Pessoa(pygame.sprite.Sprite):
                 self.rect.top = block.rect.bottom
                 self.speedy = 0
 
-           # Movimento horizontal (código original)
+        # Movimento horizontal (código original)
         self.rect.x += self.speedx
         collisions = pygame.sprite.spritecollide(self, self.blocks, False)
         for block in collisions:

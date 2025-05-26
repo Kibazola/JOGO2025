@@ -50,23 +50,30 @@ img_morcego = [
 # Chama a função tela de carregamento:
 tela_carregamento(window, WIDTH, HEIGHT)
 
+
+#Criando as variaveis para as músicas:
 music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Background Music by Alec Koff.mp3')
 music.set_volume(0.5)  # ajusta o volume
 music.play(loops=-1)
 music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
-font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
 gm_music = pygame.mixer.Sound('assets/snd/GAME OVER efeito sonoro!!.mp3')
 moeda_musc = pygame.mixer.Sound('assets/snd/MOEDA DO SUPER MÁRIO.mp3')
 winner_music = pygame.mixer.Sound('assets/snd/Rocket Jr - A Lil BIT _ Eccentric, Quirky _ Bit Music-yt.savetube.me.mp3')
 music_morcego = pygame.mixer.Sound('assets/snd/SOM DE MORCEGOSSOUND OF BAT.mp3')
 music_morcego.set_volume(0.05)
 music_jump = pygame.mixer.Sound('assets/snd/mixkit-player-jumping-in-a-video-game-2043.wav')
+
+
+
+font_pontuação = pygame.font.Font('assets/font/PressStart2P.ttf', 28)
+
 # Loop principal do jogo
 game = True
 
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 FPS = 30
+
 
 # Criando um grupo de sprites
 all_sprites = pygame.sprite.Group()
@@ -75,6 +82,7 @@ porta_sprit = pygame.sprite.Group()
 moedas = pygame.sprite.Group()
 blocos = pygame.sprite.Group()
 
+#Criando matriz de plataforma do jogo (nivel1)
 world_data = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -89,13 +97,15 @@ world_data = [
     [1,2,2,2,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,1],
 ]
 
+
 # Criação do mundo
 world = World(world_data)
 
 
 start_x = 1000
 start_y = 500 
-# Este código foi gerado por IA (GPT)
+
+
 player_sprites = { 
     "idle": "assets/img/Personagem/parado.png",
     "run1": "assets/img/Personagem/mov1.png",
@@ -207,6 +217,7 @@ while game:
         continue  # Pula o resto do loop se o jogo acabou
 
 
+    #Este bloco trata o que acontece quando o jogador morre no jogo. De forma geral:
     if player.morto:
         music_dor.play()
         lives -= 2
@@ -217,7 +228,7 @@ while game:
         player.morto = False
         all_sprites.update()
 
-    
+    #Este bloco trata o que acontece quando o colide com os morcegos:
     hits = pygame.sprite.spritecollide(player,all_morcegos, False)
     if hits:
         if hits and not colidindo:

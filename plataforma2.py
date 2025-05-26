@@ -13,6 +13,8 @@ tile_size = 80
 
 background = pygame.image.load('assets/img/fundo novo.jpg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+# A construção deste arquivo de plataforma foi passeada no seguinte GitHub:
+#https://github.com/Insper/pygame-snippets/blob/master/jump_block.py
 
 # Classe do bloco como sprite
 class Bloco(pygame.sprite.Sprite):

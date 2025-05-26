@@ -1,4 +1,4 @@
-
+#Este 
 import pygame
 import time
 
@@ -10,9 +10,15 @@ def tela_carregamento(window, WIDTH, HEIGHT):
 
     music_inicio.play()
 
-    progresso = 0
+   
+    # Este bloco de código abaixo foi 80% gerada por AI (ChatGPT)
+    #Descrição do código abaixo:
+    #Este código implementa uma tela de carregamento visual usando a biblioteca Pygame.
+    #Ele exibe uma barra de progresso que vai de 0% a 100%, acompanhada de um texto indicando o andamento do carregamento. 
+    #Durante esse processo, a tela é atualizada continuamente com uma imagem de fundo, o contorno da barra e o preenchimento proporcional ao progresso
 
-    
+
+    progresso = 0
     while progresso <= 100:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

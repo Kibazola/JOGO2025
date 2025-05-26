@@ -1,16 +1,11 @@
 import pygame
 import time
-
+#Esta função foi baseada na função de tela_de_carregamento, foi alterado apenas as imagens
 def tela_carregamento2(window, WIDTH, HEIGHT):
     font = pygame.font.SysFont(None, 60)
     img_fundo = pygame.image.load('assets/img/main2/fundomain.png').convert()
     img_fundo = pygame.transform.scale(img_fundo, (WIDTH, HEIGHT))
-    
-
-    
     progresso = 0
-
-    
     while progresso <= 100:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

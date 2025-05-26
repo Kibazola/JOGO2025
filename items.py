@@ -4,7 +4,7 @@ WIDTH = 1600
 HEIGHT = 900
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-# esta classe foi baseado no seguinte tutorial:
+
 TILE_SIZE = 64
 
 img_vida =  pygame.image.load('assets/img/items/vida-removebg-preview.png').convert_alpha()
@@ -17,7 +17,7 @@ item_boxes = {
     "porta"   : img_porta
 }
 
-
+#A classe abaixo foi baseado no seguinte tutorial:
 class ItemBox(pygame.sprite.Sprite):
     def __init__(self, item_type,x,y):
         pygame.sprite.Sprite.__init__(self)
