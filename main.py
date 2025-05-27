@@ -258,7 +258,7 @@ while game:
         window.blit(next_level_img, (10, 10))
         pygame.display.update()
         winner_music.play()
-        sleep(10)
+        sleep(15)
         #game = False
         import main2
         pygame.quit()

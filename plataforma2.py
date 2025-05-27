@@ -55,7 +55,8 @@ class Bloco_movel(pygame.sprite.Sprite):
 
 
     ######
-
+#Cria blocos que movem-se apenas no eixo x
+#A classe bloco x foi 50% construido com o auxílio do chatGPT
 class Bloco_movel_x(pygame.sprite.Sprite):
     def __init__(self, img, x, y, distancia_x=15):
         pygame.sprite.Sprite.__init__(self)

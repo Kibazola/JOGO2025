@@ -26,6 +26,7 @@ class Bloco(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
 
+# Cria um blovo que move-se apenas no eixo y
 class Bloco_movel(pygame.sprite.Sprite):
     def __init__(self,img, x,y,m_y):
         pygame.sprite.Sprite.__init__(self)
@@ -47,6 +48,7 @@ class Bloco_movel(pygame.sprite.Sprite):
         if self.rect.y > self.max_y and self.speedy  >0:
             self.speedy = - self.speedy 
             self.rect.y = self.max_y
+            
 
 # Classe World (mundo do jogo)
 class World():

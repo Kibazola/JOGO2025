@@ -13,11 +13,13 @@ img_porta = pygame.image.load('assets/img/items/porta-removebg-preview.png').con
 img_porta = pygame.transform.scale(img_porta, (200, 220))
 
 item_boxes = {
-    "vida"    : img_vida,
     "porta"   : img_porta
 }
 
 #A classe abaixo foi baseado no seguinte tutorial:
+#https://github.com/russs123/Shooter/blob/main/shooter_tut9.py
+#Esta classe do item foi criada para poder facilitar a verificação da colisão com o jogador
+
 class ItemBox(pygame.sprite.Sprite):
     def __init__(self, item_type,x,y):
         pygame.sprite.Sprite.__init__(self)

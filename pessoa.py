@@ -24,7 +24,7 @@ class Pessoa(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect = self.rect.inflate(-20, -20)
 
-        # Configurações de movimento (mantidas do seu código original)
+        # Configurações de movimento 
         self.speedx = 0
         self.speedy = 0
         self.jump_force = -15
@@ -76,7 +76,7 @@ class Pessoa(pygame.sprite.Sprite):
         self.animate()
 
 
-        # Movimento vertical (código original)
+        # Movimento vertical 
         self.speedy += self.gravity
         self.rect.y += self.speedy
         on_ground = False
@@ -91,7 +91,7 @@ class Pessoa(pygame.sprite.Sprite):
                 self.rect.top = block.rect.bottom
                 self.speedy = 0
 
-        # Movimento horizontal (código original)
+        # Movimento horizontal 
         self.rect.x += self.speedx
         collisions = pygame.sprite.spritecollide(self, self.blocks, False)
         for block in collisions:
@@ -100,7 +100,7 @@ class Pessoa(pygame.sprite.Sprite):
             elif self.speedx < 0:
                 self.rect.left = block.rect.right
 
-        # Colisões (código original)
+        # Colisões 
         if pygame.sprite.spritecollide(self, self.spikes, False):
             self.morto = True
         if pygame.sprite.spritecollide(self, self.moeda, True):
@@ -108,7 +108,7 @@ class Pessoa(pygame.sprite.Sprite):
 
         self.isJump = not on_ground
 
-        # Limites da tela (código original)
+        # Limites da tela 
         if self.rect.right > self.WIDTH:
             self.rect.right = self.WIDTH
         if self.rect.left < 0:

@@ -47,14 +47,11 @@ img_morcego = [
 # Chama a função tela de carregamento2:
 tela_carregamento2(window, WIDTH, HEIGHT)
 
-#Carregando as músicas:
-music = pygame.mixer.Sound('assets/snd/Cinematic Drums Epic Percussion Background Music by Alec Koff.mp3')
-music.set_volume(0.5)  # ajusta o volume
-music.play(loops=-1)
+
 music_dor =  pygame.mixer.Sound('assets/snd/som_dor.wav')
 gm_music = pygame.mixer.Sound('assets/snd/GAME OVER efeito sonoro!!.mp3')
 moeda_musc = pygame.mixer.Sound('assets/snd/MOEDA DO SUPER MÁRIO.mp3')
-winner_music = pygame.mixer.Sound('assets/snd/Rocket Jr - A Lil BIT _ Eccentric, Quirky _ Bit Music-yt.savetube.me.mp3')
+
 music_morcego = pygame.mixer.Sound('assets/snd/SOM DE MORCEGOSSOUND OF BAT.mp3')
 music_morcego.set_volume(0.05)
 music_jump = pygame.mixer.Sound('assets/snd/mixkit-player-jumping-in-a-video-game-2043.wav')
@@ -162,7 +159,7 @@ while game:
             window.blit(game_over_img, (10, 10))
             pygame.display.update()
             music_morcego.stop()
-            music.stop()
+            #music.stop()
             sleep(1)
             if not cont_m:
                 cont_m = True
@@ -175,7 +172,7 @@ while game:
                     lives = 4
                     pontos = 0
                     colidindo = False
-                    music.play()
+                    #music.play()
                     # Remove todos os obstáculos
                     for obstaculo in all_morcegos:
                         if obstaculo != player:  # Não remove o jogador
@@ -212,7 +209,7 @@ while game:
         window.blit(game_over_img, (10, 10))
         pygame.display.update()
         music_morcego.stop()
-        music.stop()
+       # music.stop()
         sleep(2)
         if not cont_m:
             cont_m = True
@@ -256,11 +253,9 @@ while game:
     #Verifica se houve colisão entre o jogador e a porta
     hits_porta = pygame.sprite.spritecollide(player, porta_sprit, False)
     if hits_porta:
-        music.stop()
         music_morcego.stop()
         window.blit(winner_img, (10, 10))
         pygame.display.update()
-        winner_music.play()
         sleep(15)
         
         
