@@ -167,30 +167,7 @@ while game:
                 pygame.display.update()
                 continue  # Pula o resto do loop se o jogo acabou
             
-            if event.key == pygame.K_SPACE:
-                    # Reinicia o jogo
-                    lives = 4
-                    pontos = 0
-                    colidindo = False
-                    #music.play()
-                    # Remove todos os obstáculos
-                    for obstaculo in all_morcegos:
-                        if obstaculo != player:  # Não remove o jogador
-                            obstaculo.kill()
-
-                    #Criando os morcegos:
-                    for i in range(3):
-                        morcego = Morcego(img_morcego[i], WIDTH)
-                        all_sprites.add(morcego)
-                        all_morcegos.add(morcego)
-
-                    
-                    # Reposiciona o jogador
-                    player.rect.x = 1000
-                    player.rect.y = 500
-                    player.isJump = False
-                    player.speedx = 0
-                    player.morto = False
+            
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                         player.speedx += 8

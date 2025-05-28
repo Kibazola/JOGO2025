@@ -1,4 +1,4 @@
-#Este 
+ 
 import pygame
 import time
 
